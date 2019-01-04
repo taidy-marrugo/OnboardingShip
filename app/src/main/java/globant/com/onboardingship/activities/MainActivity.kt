@@ -1,7 +1,8 @@
-package globant.com.onboardingship
+package globant.com.onboardingship.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import globant.com.onboardingship.R
 
 class MainActivity : AppCompatActivity() {
 
