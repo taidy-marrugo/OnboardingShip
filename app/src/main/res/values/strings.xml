@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">OnboardingShip</string>
-    <string name="left">L</string>
-    <string name="right">R</string>
-    <string name="center">C</string>
+    <array name="items_title">
+        <item>L</item>
+        <item>C</item>
+        <item>R</item>
+    </array>
 </resources>
