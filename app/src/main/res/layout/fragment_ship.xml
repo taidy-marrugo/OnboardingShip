@@ -2,18 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/shipImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:rotation="90"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ship"
-        android:scaleX="0.6"
-        android:scaleY="0.6"
-        />
-
+    android:orientation="vertical"
+    >
 </LinearLayout>

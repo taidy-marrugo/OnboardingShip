@@ -16,13 +16,12 @@ class ShipFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState:
     Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_ship, container, false)
-    return view
+        return view
     }
 
     companion object {
         fun newInstance(ship: Ship): ShipFragment {
             val args = Bundle()
-           // args.putString(ShipHelper.KEY_SHIP_URI, ship.shipUri)
             val fragment = ShipFragment()
             fragment.arguments = args
             return fragment
