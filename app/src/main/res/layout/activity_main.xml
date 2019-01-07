@@ -12,16 +12,15 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:adjustViewBounds="true"
-        android:background="@drawable/ship"
         android:rotation="90"
         android:scaleType="fitCenter"
-        android:scaleX="0.4"
-        android:scaleY="0.6" />
+        />
 
     <com.nshmura.recyclertablayout.RecyclerTabLayout
+        android:layout_alignParentTop="true"
         android:id="@+id/recyclerTabLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true" />
 
     <android.support.v4.view.ViewPager
