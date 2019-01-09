@@ -22,18 +22,20 @@ open class ShipView(activity: Activity, pagerAdapter: ShipPagerAdapter) : Activi
 
         activity.viewPager.adapter = pagerAdapter
         activity.viewPager.setCurrentItem(1, true)
-        activity.recyclerTabLayout.setUpWithViewPager(activity.viewPager)
+        activity.recyclerTabLayout.setupWithViewPager(activity.viewPager)
 
         activity.viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
             override fun onPageScrollStateChanged(state: Int) {
             }
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                RxBus.post(OnScrollShipBusObserver.OnScrollMoved(positionOffset, position))
+                RxBus.post(OnScrollShipBusObserver.OnScrollMoved(position, positionOffset))
             }
 
             override fun onPageSelected(position: Int) {
             }
         })
     }
+
 }

@@ -1,12 +1,7 @@
 package globant.com.onboardingship.mvp.presenter
 
-import android.opengl.Visibility
+
 import android.util.Log
-import android.view.View
-import android.view.View.VISIBLE
-import android.widget.ImageView
-import globant.com.onboardingship.R
-import globant.com.onboardingship.fragments.ShipFragment
 import globant.com.onboardingship.mvp.view.ShipView
 import globant.com.onboardingship.utils.bus.RxBus
 import globant.com.onboardingship.utils.bus.observer.OnScrollShipBusObserver
@@ -18,19 +13,16 @@ open class ShipPresenter(view: ShipView) {
         if (activity != null) {
             RxBus.subscribe(activity, object : OnScrollShipBusObserver() {
                 override fun onEvent(value: OnScrollMoved) {
-                    if (value.position == 0) {
-                        activity.shipImageView.rotation = value.number
-                        activity.shipImageView.scaleX = 0.6F
-                        activity.shipImageView.scaleY = 0.6F
-                    } else if (value.position == 1) {
+
+                    if (value.position+  value.positionOffset > 0.0 &&  value.position+value.positionOffset <= 1.0) {//move ship  0 to 1
+
+                        activity.shipImageView.rotation = -90*(1- (value.position+value.positionOffset) )
+                    } else if (value.position+value.positionOffset > 1.001 &&  +value.position+ value.positionOffset < 2) {//move ship  1 to 2
+                        activity.shipImageView.rotation =  value.position+value.positionOffset * 90
+                    } else if(value.position+value.positionOffset>=2 ){
                         activity.shipImageView.rotation = 90F
-                        activity.shipImageView.scaleX = 0.6F
-                        activity.shipImageView.scaleY = 0.6F
-                    } else if (value.position == 2) {
-                        activity.shipImageView.rotation = value.number + 180F
-                        activity.shipImageView.scaleX = 0.8F
-                        activity.shipImageView.scaleY = 0.8F
                     }
+
                 }
             })
         }
