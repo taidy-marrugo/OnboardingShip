@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val ships = ShipHelper.getShips(this)
-        pagerAdapter = ShipPagerAdapter(supportFragmentManager, ships)
+        val ships = ShipHelper.getShips(this)// move to presenter, remove ShipHelper
+        pagerAdapter = ShipPagerAdapter(supportFragmentManager, ships)// move to shipview
         presenter= ShipPresenter(ShipView(this,pagerAdapter))
     }
 
