@@ -4,15 +4,16 @@ import android.app.Activity
 import android.support.v4.view.ViewPager
 import com.squareup.picasso.Picasso
 import globant.com.onboardingship.adapter.ShipPagerAdapter
+import globant.com.onboardingship.utils.Constants
 import globant.com.onboardingship.utils.bus.RxBus
 import globant.com.onboardingship.utils.bus.observer.OnScrollShipBusObserver
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 open class ShipView(activity: Activity, pagerAdapter: ShipPagerAdapter) : ActivityView(activity) {
-    init {//string to constants, init long
+    init {// init long
         Picasso.with(activity)
-                .load(activity.resources.getIdentifier("ship", "drawable", activity.packageName))
+                .load(activity.resources.getIdentifier(Constants.IMAGE_NAME, Constants.FOLDER, activity.packageName))
                 .into(activity.shipImageView)
 
 
