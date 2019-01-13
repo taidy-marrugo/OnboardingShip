@@ -15,8 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        pagerAdapter = ShipPagerAdapter(supportFragmentManager,applicationContext)// move to shipview
-        presenter= ShipPresenter(ShipView(this,pagerAdapter))
+        presenter= ShipPresenter(ShipView(this))
     }
 
     override fun onDestroy() {
