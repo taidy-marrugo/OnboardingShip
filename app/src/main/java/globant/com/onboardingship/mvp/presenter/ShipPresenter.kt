@@ -10,25 +10,30 @@ import kotlinx.android.synthetic.main.activity_main.*
 open class ShipPresenter(view: ShipView) {
     init {
         val activity = view.activity
+        var scaleXInit: Float? = activity?.shipImageView?.scaleX
+        var scaleYInit: Float? = activity?.shipImageView?.scaleY
+        val scalingFactor = 0.05F
         if (activity != null) {
             RxBus.subscribe(activity, object : OnScrollShipBusObserver() {
                 override fun onEvent(value: OnScrollMoved) {
-                    Log.d("tag1","positionOffset "+value.positionOffset);
-                    if (value.position+  value.positionOffset >= 0.000 &&  value.position+value.positionOffset <= 1.0) {//move ship  0 to 1
+                    if (value.position + value.positionOffset >= 0.000 && value.position + value.positionOffset <= 1.0) {//move ship  0 to 1
+                        activity.shipImageView.rotation = -90 * (1 - (value.position + value.positionOffset))
+                        activity.shipImageView.scaleX = scaleXInit!!
+                        activity.shipImageView.scaleY = scaleYInit!!
+                    } else if (value.position + value.positionOffset > 1.001 && +value.position + value.positionOffset < 2) {//move ship  1 to 2
+                        val before = activity.shipImageView.rotation
+                        activity.shipImageView.rotation = value.position + value.positionOffset * 90
+                        val after = activity.shipImageView.rotation
+                        if (before < after) {
+                            activity.shipImageView.scaleX = activity.shipImageView.scaleX + scalingFactor
+                            activity.shipImageView.scaleY = activity.shipImageView.scaleY + scalingFactor
 
-                        activity.shipImageView.rotation = -90*(1- (value.position+value.positionOffset) )
-                        /*if(value.position==2){
-                            activity.shipImageView.scaleX=activity.shipImageView.scaleX+(value.positionOffset/10)
-                            activity.shipImageView.scaleY=activity.shipImageView.scaleY+(value.positionOffset/10)
-                        }else if(value.position==1){
-                            activity.shipImageView.scaleX=activity.shipImageView.scaleX-(value.positionOffset/10)
-                            activity.shipImageView.scaleY=activity.shipImageView.scaleY-(value.positionOffset/10)
-                        }*/
-                    } else if (value.position+value.positionOffset > 1.001 &&  +value.position+ value.positionOffset < 2) {//move ship  1 to 2
-                        activity.shipImageView.rotation =  value.position+value.positionOffset * 90
+                        } else {
+                            activity.shipImageView.scaleX = activity.shipImageView.scaleX - scalingFactor
+                            activity.shipImageView.scaleY = activity.shipImageView.scaleY - scalingFactor
+                        }
 
-
-                    } else if(value.position+value.positionOffset>=2 ){
+                    } else if (value.position + value.positionOffset >= 2) {
                         activity.shipImageView.rotation = 90F
                     }
 

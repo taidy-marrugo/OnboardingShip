@@ -2,14 +2,8 @@ package globant.com.onboardingship.mvp.view
 
 import android.app.Activity
 import android.support.v4.view.ViewPager
-import android.util.Log
-import android.view.View
-import android.widget.ImageView
 import com.squareup.picasso.Picasso
-import globant.com.onboardingship.R
-
 import globant.com.onboardingship.adapter.ShipPagerAdapter
-import globant.com.onboardingship.fragments.ShipFragment
 import globant.com.onboardingship.utils.bus.RxBus
 import globant.com.onboardingship.utils.bus.observer.OnScrollShipBusObserver
 
