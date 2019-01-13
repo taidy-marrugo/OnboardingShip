@@ -9,7 +9,6 @@ import globant.com.onboardingship.mvp.view.ShipView
 import globant.com.onboardingship.utils.bus.RxBus
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var pagerAdapter: ShipPagerAdapter
     private  var presenter: ShipPresenter?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
