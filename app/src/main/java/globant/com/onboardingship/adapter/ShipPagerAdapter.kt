@@ -9,7 +9,7 @@ import globant.com.onboardingship.R
 import globant.com.onboardingship.fragments.ShipFragment
 import globant.com.onboardingship.mvp.model.Ship
 
-class ShipPagerAdapter(fragmentManager: FragmentManager, private val context: Context) :
+class ShipPagerAdapter(fragmentManager: FragmentManager, context: Context) :
         FragmentStatePagerAdapter(fragmentManager) {
     val ships=getShips(context)
     override fun getItem(position: Int): Fragment {

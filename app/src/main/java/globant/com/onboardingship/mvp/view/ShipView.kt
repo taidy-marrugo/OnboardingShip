@@ -12,7 +12,7 @@ import globant.com.onboardingship.utils.bus.observer.OnScrollShipBusObserver
 import kotlinx.android.synthetic.main.activity_main.*
 
 open class ShipView(activity: AppCompatActivity) : ActivityView(activity) {
-    val pagerAdapter = ShipPagerAdapter(activity.supportFragmentManager, activity.applicationContext)// move to shipview
+    val pagerAdapter = ShipPagerAdapter(activity.supportFragmentManager, activity.applicationContext)
 
     init {
     }
