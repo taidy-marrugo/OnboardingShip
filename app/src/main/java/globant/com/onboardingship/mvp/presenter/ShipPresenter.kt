@@ -1,6 +1,7 @@
 package globant.com.onboardingship.mvp.presenter
 
 
+import android.util.Log
 import globant.com.onboardingship.mvp.view.ShipView
 import globant.com.onboardingship.utils.bus.RxBus
 import globant.com.onboardingship.utils.bus.observer.OnScrollShipBusObserver
@@ -9,13 +10,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 open class ShipPresenter(view: ShipView) {
     init {
         val activity = view.activity
-         view.setImageShip()
+        view.setImageShip()
         view.setAdapter()
         view.getPagerScroll()
 
         var scaleXInit: Float? = view.getImageShip()?.scaleX
         var scaleYInit: Float? = view.getImageShip()?.scaleY
-        val scalingFactor = 0.05F
+        val scalingFactor = 0.09F
+
         if (activity != null) {
             RxBus.subscribe(activity, object : OnScrollShipBusObserver() {
                 override fun onEvent(value: OnScrollMoved) {
@@ -27,19 +29,26 @@ open class ShipPresenter(view: ShipView) {
                         val before = view.getImageShip()?.rotation
                         view.getImageShip()?.rotation = value.position + value.positionOffset * 90
                         val after = view.getImageShip()?.rotation
+
+                        val rotationDelta = (view.getImageShip()?.rotation!! * scalingFactor) / 90F
+
                         if (before!! < after!!) {
-                            view.getImageShip()?.scaleX = view.getImageShip()?.scaleX!! + scalingFactor
-                            view.getImageShip()?.scaleY = view.getImageShip()?.scaleY!! + scalingFactor
+                            view.getImageShip()?.scaleX = scaleXInit!!+rotationDelta!!
+                            view.getImageShip()?.scaleY = scaleYInit!! + rotationDelta!!
+
 
                         } else {
-                            view.getImageShip()?.scaleX = view.getImageShip()?.scaleX!! - scalingFactor
-                            view.getImageShip()?.scaleY = view.getImageShip()?.scaleY!! - scalingFactor
+                            view.getImageShip()?.scaleX = scaleXInit!! - rotationDelta!!
+                            view.getImageShip()?.scaleY = scaleYInit!! - rotationDelta!!
+
                         }
+
 
                     } else if (value.position + value.positionOffset >= 2) {
                         view.getImageShip()?.rotation = 90F
+                        view.getImageShip()?.scaleX = scaleXInit!! + scalingFactor
+                        view.getImageShip()?.scaleY = scaleYInit!! + scalingFactor
                     }
-
                 }
             })
         }
