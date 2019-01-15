@@ -16,7 +16,7 @@ open class ShipPresenter(view: ShipView) {
 
         var scaleXInit: Float? = view.getImageShip()?.scaleX
         var scaleYInit: Float? = view.getImageShip()?.scaleY
-        val scalingFactor = 0.09F
+        val scalingFactor = 0.5F
 
         if (activity != null) {
             RxBus.subscribe(activity, object : OnScrollShipBusObserver() {
@@ -26,23 +26,10 @@ open class ShipPresenter(view: ShipView) {
                         view.getImageShip()?.scaleX = scaleXInit!!
                         view.getImageShip()?.scaleY = scaleYInit!!
                     } else if (value.position + value.positionOffset > 1.001 && +value.position + value.positionOffset < 2) {//move ship  1 to 2
-                        val before = view.getImageShip()?.rotation
                         view.getImageShip()?.rotation = value.position + value.positionOffset * 90
-                        val after = view.getImageShip()?.rotation
-
                         val rotationDelta = (view.getImageShip()?.rotation!! * scalingFactor) / 90F
-
-                        if (before!! < after!!) {
-                            view.getImageShip()?.scaleX = scaleXInit!!+rotationDelta!!
-                            view.getImageShip()?.scaleY = scaleYInit!! + rotationDelta!!
-
-
-                        } else {
-                            view.getImageShip()?.scaleX = scaleXInit!! - rotationDelta!!
-                            view.getImageShip()?.scaleY = scaleYInit!! - rotationDelta!!
-
-                        }
-
+                        view.getImageShip()?.scaleX = scaleXInit!! + rotationDelta!!
+                        view.getImageShip()?.scaleY = scaleYInit!! + rotationDelta!!
 
                     } else if (value.position + value.positionOffset >= 2) {
                         view.getImageShip()?.rotation = 90F
