@@ -28,7 +28,7 @@ open class ShipView(activity: AppCompatActivity) : ActivityView(activity) {
     }
 
     fun getImageShip(): ImageView? {
-        return activity?.shipImageView
+        return activity!!.shipImageView
     }
     fun setAdapter() {
         activity?.viewPager?.adapter = pagerAdapter
